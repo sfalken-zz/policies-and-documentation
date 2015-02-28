@@ -1,0 +1,82 @@
+Policy for simple patches
+
+Simple Patch Policy
+
+Goal
+
+This policy is designed to help prevent situations where simple
+patches are posted to bugzilla, but end up rotting there because
+the maintainer is unresponsive. The goal is to accelerate and
+facilitate to application of small but important patches to the
+distribution. For situations where the package is out of date or
+severely broken, the non-responsive maintainer policy should be
+followed.
+
+This policy is designed in particular to avoid situations where
+casual users and packagers who encounter a bug and decide to help
+out by submitting a fix, end up seeing their patch rotting away.
+For people who often submit small fixes to packages across the
+distribution, applying for proven packager status is the better
+approach.
+
+Typical examples of simple patches
+
+FTBFS issues (preferably with upstream commit if not a packaging
+issue)
+Problems with Requires/Provides and directory ownership
+Incorrect compilation flags (must be well-reasoned)
+Small fixes for individual critical issues (crashes, incorrect
+behaviour) as well as other other runtime issues (i.e. caused by
+changes to another distribution component). Unless these patches
+are really trivial and well-reasoned, an upstream commit is
+mandatory.
+Distribution integration issues (i.e. bad desktop files).
+Examples of non-simple patches
+
+Version upgrades
+Non-trivial changes for API/ABI issues
+Changes to provided subpackages and package names
+Feature requests
+Anything that requires specific knowledge of the package in
+question
+Procedure
+
+First, file a bug against the component in question with the
+proposed patch. If after one week there was no reply from a
+maintainer, start the simple patch process:
+
+Prepare complete patches, for each affected branch, which apply
+cleanly against the current tree of the Fedora package. These
+patches must also include all the necessary updates to the spec
+file (release bump, changelog entry). Make the patch as small and
+un-invasive as possible (i.e. no spec cleanups!). Create the
+patches with git format-patch and justify the patch in the commit
+message. The message must contain references to the upstream
+commits if any such exist. Remember to reference the bug in the
+commit message and in the spec changelog.
+Do scratch builds of the patched package for every affected branch.
+Block the SIMPLE_PATCHES tracking bug, and add a comment with the
+following contents:
+Simple Patch Request
+====================
+Patch[branch]=<url>
+ScratchBuild[branch]=<url>
+Patch[otherbranch]=<url>
+ScratchBuild[otherbranch]=<url>
+Submitter=<FAS id>
+A proven packager will review and apply the patch, or reject it
+with an explanation.
+Note
+
+Any user may file a simple patch request for rawhide, even those
+who are not in the packagers group, as long as they have signed up
+for a Fedora account and signed the CLA. For stable releases, only
+approved packagers may file simple patch requests.
+
+Note for proven packagers
+
+A script to process most of the simple patch request automatically
+can be found here process-simple-patch.py.
+
+see: http://fedoraproject.org/wiki/Policy_for_simple_patches for
+source
