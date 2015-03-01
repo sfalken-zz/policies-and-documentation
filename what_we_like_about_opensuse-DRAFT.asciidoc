@@ -1,0 +1,43 @@
+Why *we* like openSUSE
+======================
+:author: $placeholder Team at $placeholder
+
+Introduction
+------------
+[id="introduction"]
+TBD
+
+Multiple versions, for multiple uses
+------------------------------------
+[id="versions"]
+
+Regular Stable Point Releases (12.3, 13.1, 13.2, etc)
+// Reasons why the Stable Point Releases are good
+Availability of a Long Term Stable LTS Release (Evergreen)
+// Reasons why LTS is good
+Tested Rolling Release (Tumbleweed)
+// Why having a tested rolling release is good
+
+Build Tools
+-----------
+[id="buildtools"]
+
+Open Build Service
+// Things we like about OBS
+Machinery
+// Things we like about Machinery
+Kiwi
+// Things we like about Kiwi
+osc
+// Things we like about osc
+
+System Management Tools
+-----------------------
+[id="systemmanagement"]
+
+YaST
+// What we like about YaST
+Snapper
+// What we like about Snapper
+Zypper and libsolv
+// What we like about Zypper and libsolv
