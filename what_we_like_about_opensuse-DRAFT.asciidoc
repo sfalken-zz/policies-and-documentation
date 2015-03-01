@@ -22,14 +22,21 @@ Build Tools
 -----------
 [id="buildtools"]
 
-Open Build Service +
+* Open Build Service +
 // Things we like about OBS
-Machinery +
+** Details here
+
+* Machinery +
 // Things we like about Machinery
-Kiwi +
+** Details here
+
+* Kiwi +
 // Things we like about Kiwi
-osc +
+** Details here
+
+* osc +
 // Things we like about osc
+** Details here
 
 System Management Tools
 -----------------------
