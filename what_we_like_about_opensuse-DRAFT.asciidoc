@@ -22,29 +22,41 @@ Build Tools
 -----------
 [id="buildtools"]
 
-* Open Build Service +
+Open Build Service::
 // Things we like about OBS
-** Details here
+Details here +
+More details
 
-* Machinery +
+Machinery::
 // Things we like about Machinery
-** Details here
+Details here +
+More details
 
-* Kiwi +
+Kiwi::
 // Things we like about Kiwi
-** Details here
+Details here +
+More details
 
-* osc +
+Osc::
 // Things we like about osc
-** Details here
+Details here +
+More details
 
 System Management Tools
 -----------------------
 [id="systemmanagement"]
 
-YaST +
+YaST::
 // What we like about YaST
-Snapper +
+Details here +
+More details
+
+Snapper::
 // What we like about Snapper
-Zypper and libsolv +
+Details here +
+More details
+
+Zypper and libsolv::
 // What we like about Zypper and libsolv
+Details here +
+More details
