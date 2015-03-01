@@ -1,0 +1,32 @@
+Why are we doing this?
+======================
+:author: $placeholder Team at $placeholder
+
+Introduction
+------------
+[id="introduction"]
+$placeholder linux is built on the ideas of using some of the concepts
+and tools that we like from various linux distributions.  $placeholder
+linux is not being created to *replace* any of it's antecedants, but 
+is an effort to combine the strengths of each in a single distribution,
+suitable for use primarily as a desktop, or development workstation.
+
+Our primary sources of inspiration are openSUSE and Fedora, both
+distributions we have great respect for, and many of the development
+team are active in the openSUSE and Fedora developer communities (and
+likely will continue to be in the future)
+
+So why not just use Fedora or openSUSE, If you like them so much?
+-----------------------------------------------------------------
+[id="why"]
+Both openSUSE and Fedora are mature distributions, to say the least, 
+with thousands of active developers.  And they've got their way of
+doing things.  And they are good ways, we're not criticizing (well not
+much)   It is just minor things.  We like the rapid development model of 
+Fedora, but we also like the Stability of openSUSE. We prefer Zypper to
+Yum/Dnf for package management. We like YaST (a lot). We like Fedora's 
+policy of keeping the packages in their repositories close to what
+Upstream is publishing.  We like the Build Tools that openSUSE has
+developed.   Honestly, we love both distributions, we just want the 
+things we like from both of them, in one distribution.
+
