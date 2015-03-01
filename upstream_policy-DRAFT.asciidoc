@@ -1,0 +1,286 @@
+:author: $placeholder Team at $placeholder
+:toc: right
+= Staying close to upstream projects
+////
+This document is maintained by Rahul Sundaram. Feel free to edit the wiki or
+contact the maintainer for any kind of feedback. The $placeholder Project
+focuses, as much as possible, on not deviating from upstream in the software it
+includes in the repository. The following guidelines are a general set of best
+practices, and provide reasons why this is a good idea, tips for sending your
+patches upstream, and potential exceptions $placeholder might make. The primary
+goal is to share the benefits of a common codebase for end users and developers
+while simultaneously reducing unnecessary maintenance efforts.
+////
+
+== Introduction
+[id="introduction"]
+upstream (noun)
+In free and open source projects, the upstream of a program or set of programs
+is the project that develops those programs. $placeholder is downstream of
+those projects. This term comes from the idea that water and the goods it
+carries float downstream and benefit those who are there to receive it.
+
+to upstream (verb)
+A short-hand way of saying "push changes to the upstream project".
+
+=== Contents
+1) What are deviations from upstream? +
+2) Why push changes upstream? +
+3) Tips On Upstreaming Patches +
+4) Some Examples Of Exceptions +
+5) References +
+
+==== 1) What are deviations from upstream?
+[id="deviations"]
+===== Patches
+Patches are the most common and obvious type of change from upstream. Patches
+might be written by the package maintainer, cherry picked or backported from
+upstream or picked from other distributions.
+
+===== Running sed or equivalent on a spec file
+While this change is less obvious it should be considered functionally
+equivalent to a patch for the purposes of this guide. Also a patch is
+preferable because running sed can sometimes change the software in unintended
+ways especially when the package maintainer is pushing a new upstream release
+as an update and such changes might not be obvious compared to a failed patch.
+
+===== Additional sources
+Desktop files, systemd unit files etc are sometimes added as additional
+sources. If you do this as a package maintainer, you need to notify upstream
+and ideally get them included as part of the upstream source. Maintaining them
+separately often involves additional maintenance from time to time.
+
+===== Configuration options
+For instance, if a particular upstream software allows both MySQL as Postgres
+as a database backend, other distributions might have picked Postgres and
+$placholder package of that upstream software might be configured to use the
+MySQL backend by default instead. If upstream or other distributions are
+favoring one of the options over the others, talk to them, find out why and
+rely on well tested and consistent options as much as possible.
+
+===== Underlying libraries and other software components
+Even without intentional modifications, software in  can still be different
+from upstream or other distributions, due to precise library versions or other
+software components your package depends on. For instance, Firefox may expose a
+sqlite bug, and $placeholder might be the only distribution building that
+precise version of Firefox against that specific version of sqlite. You should
+talk to upstream and find out whether there are any such known issues, and
+search through upstream bug trackers or other popular distribution bug trackers
+to figure out such problems.
+
+===== Miscellaneous
+The above list is not comprehensive. Even seemingly minor changes like the
+specific desktop theme or fonts can exhibit bugs in other software, or can
+expose a bug in the theme or font but only with some specific software. For
+instance, LibreOffice might have a problem displaying a list when using the
+Adwaita theme and Dejavu font. When analyzing issues, make sure you consider
+the impact of every change either in $placeholder or by users themselves.
+
+==== 2) Why push changes upstream?
+[id="push"]
+===== Common Benefit And Reduced Maintenance Burden
+When $placeholder carries patches that are specific to $placeholder or
+deviations from upstream projects, those patches are not shared by every
+distribution. This puts the burden of maintaining those patches on
+$placeholder, which includes keeping those patches in a functional state by
+rewriting or forward-porting them for every upstream release. This effort can
+quickly add up to be overwhelming, while not being in the spirit of sharing the
+benefits (as well as the effort in maintaining) free and open source software.
+
+===== Documentation
+Upstream projects are documented formally (in the form of man/info pages and
+longer guides) and informally in many user forums or mailing lists as answers
+to user questions. Deviations from upstream projects can thus confuse end users
+and upstream developers when those patches cause changes in behavior that are
+$placeholder specific and not documented properly, even where the formal
+documentation (such as man pages) are also patched to describe the changes.
+
+===== Translations
+Maintaining translations upstream gains the advantage of established
+translation communities, which are most likely more experienced with the
+project terms. Downstream projects benefit when using those translations. In
+addition, it lifts the burden of hosting, and of the need to merge often from
+upstream to downstream and back again. To make sure translation work continues
+upstream. Any string changes that were introduced by patches should be
+maintained by the downstream community.
+
+===== Upstream Acceptance
+$placeholder is downstream of many thousands of software projects. Much of this
+software is packaged by maintainers who are not programmers or lack expertise
+in the language(s) the software is written in. In some cases the software has a
+large and complex codebase (such as the kernel or Libreoffice) and the package
+maintainers might not have the level of understanding in all areas compared to
+subsystem maintainers or upstream developers. For this and other reasons,
+$placeholder needs the acceptance of upstream software developers. These
+developers may view any significant patches as a fork or refuse to take bug
+reports from $placeholder users due to the differences in the codebase.
+$placeholder as a project strives to be welcoming and cooperative with upstream
+developers as much as possible. We must avoid $placeholder specific patches and
+any patches that are useful should be sent upstream to these developers via
+mailing lists, bug trackers, or direct email.
+
+===== Quality Assurance
+Patches that are accepted upstream are usually reviewed or tested by many
+people including developers and testers. This includes testing by other
+GNU/Linux distributions. A deviation from the common codebase used by many is a
+potential chance of introducing a regression that is specific to $placeholder.
+
+===== Security
+A special case of the "Quality Assurance" issue is that changes that have
+surprising security implications are more likely to be detected by upstream
+(who often have deeper knowledge of the program).
+
+===== Fast incremental improvements
+Staying close to upstream versions is helpful when doing version bumps for
+updates that bring in new features. This prevents tedious backporting of only
+security and bug fixes. Deviations from upstream can significantly hamper the
+speed of delivering improvements from new versions to end users. However,
+regressions are to be avoided, and potential improvements and new features must
+be carefully assessed against the risk of harming the users experience. Refer
+to our Updates_Policy for more details.
+
+===== ABI or API Deviations
+Patches that introduce a new application binary interface (ABI) or application
+program interface (API) must be especially avoided, even if the ABI/API changes
+are planned to land upstream. When these patches get upstream (if ever),
+upstream developers might introduce changes in the ABI/API during the code
+review process before merging the code. This could break other software in the
+repository that makes use of the $placeholder-patched ABI/API.
+
+===== Direct End User Feedback
+When users run into problems with any software that is in $placeholder, they
+can report the problems directly upstream. By not deviating from upstream, it
+remains a central location for all bug reports on that software, leaving
+$placeholder package maintainers to concentrate on good packaging instead of
+acting in between users and upstream issues.
+
+==== 3) Tips On Upstreaming Patches
+[id="tips"]
+===== Talk to upstream
+Maintaining a regular flow of communication with
+the upstream project is helpful in understanding the upstream
+developers well, and encourages them to be more responsive to your
+requests. It also helps in understanding technical issues, such as
+how they prefer patches to be submitted. +
+ +
+Make the patches generic enough to be maintained by upstream
+developers. +
+ +
+Explain the need for your patches, that is, what bugs
+they fix or what features they add. Any references to bugzilla
+reports or user requests can be quite useful for the developers who
+receive your patches. +
+ +
+Don't consider any changes too small to be sent upstream. Even
+minor changes like fixing a permission problem in a file or
+excluding a empty file can and should be reported upstream even if
+upstream does not necessarily act on all of them quickly. +
+ +
+Divide patches into small and independent chunks that remain
+functional, so they can be understood, reviewed, and accepted or
+rejected individually. +
+ +
+If the patch introduces new strings or changes existing ones, make
+the changes as generic as possible. +
+ +
+Fix your coding style to match the upstream project's guidelines.
+This might seem trivial but many upstream projects insist on
+following their guidelines so that their codebase looks internally
+self consistent and is more maintainable. +
+ +
+Where possible, encourage upstream point-releases that fix bugs and
+security issues only, to avoid the possibility of regressions. +
+ +
+Test your changes as throughly as you can before you send them
+upstream. Broken patches leave a long-lasting bad impression. +
+ +
+Be patient and cooperative. If feedback is offered, discuss
+changes, answer questions, and provide revisions that fix any
+problems. +
+ +
+Don't flame or argue unnecessarily with upstream
+developers. The overall goal is persuade upstrea developers to get
+your patches committed upstream and not to demonstrate "who is
+better."  +
+ +
+Don't forget the human element in these conversations. If
+necessary, we will have to carry some patches downstream to enforce
+our policies even if upstream does not agree with us at that point.
+
+==== 4) Some Examples Of Exceptions
+[id="exceptions"]
+===== Severe Security Issues Or Major Bug Fixes
+For any major issues such as security holes or data loss problems, waiting on a
+new release from upstream for a fix can be too much of a delay. In these
+instances, it may be better to backport those fixes from upstream or fix the
+issue by writing your own patch and do an update in $placeholder. If you are
+writing a new patch, send it upstream so that $placeholder shares the benefits
+and avoid deviations in new releases that follow. Be careful when expeding the
+patching however. A security patch that is not comprehensive can leave
+unexpected security holes still open or a patch to fix a major problem can
+worsen the problem. Get your patches peer reviewed as much as possible. Due to
+differences in release schedules between upstream projects and $placeholder
+releases, maintainers would have to keep in mind feature and development
+freezes in $placeholder and fix problems accordingly.
+
+===== Non-free or patent encumbered software
+If upstream projects include software that is non-free or has known patent
+issues, such software does not meet the $placeholder licensing guidelines and
+$placeholder will not include them. In many instances, such code is optional in
+the form of plugins that $placeholder simply does not need to include in its
+software repository. In other cases, it might be possible to work with upstream
+on making it optional or patch specific portions.
+
+===== Dead Or Unresponsive Upstream Projects
+In cases where upstream projects are either dead or unresponsive, it might be
+acceptable to patch the software. If upstream is dead, you might want to
+consider sharing patches with other distributions or taking over maintenance if
+you have the time, skills, and interest. Be wary of maintaining software with
+no upstream since all the burden of maintaining the codebase as well as
+packaging issues are with you. If upstream is unresponsive and many
+distributions are deviating significantly, it might be a opportunity for a
+cross distribution fork (Similar to XFree86 and Xorg).
+
+===== Patches Heading Upstream
+Any patches that are known to be headed upstream might be patched temporarily
+in $placeholder for a high benefit addition of new features to end users. If
+this is done, maintenance effort of the patches should be low impact for the
+small amount of time until upstream merges the patches and does a new release.
+
+===== Distribution Integration
+There are features that are critical or very good to have for $placeholder as a
+distribution but not been significant enough for various upstream projects to
+accept related enhancements just yet. Use your discretion carefully when
+choosing to integrate any such patches since there is a trade off between
+upstream acceptance and $placeholder integration and associated costs/benefits.
+
+===== Bundling of Libraries
+The problem of projects bundling other projects is sufficiently significant for
+$placeholder as a distribution that deviating from upstream is essentially
+mandatory. See the packaging guidelines related to bundling here. Fixes related
+to bundling should of course be sent upstream if possible.
+
+==== 5) References
+[id="references"]
+http://fedoraproject.org/wiki/Objectives +
+https://fedoraproject.org/wiki/Packaging/
+Guidelines#All_patches_should_have_an_upstream_bug_link_or_comment +
+http://fedoraproject.org/wiki/PackageMaintainers/TrackingUpstream +
+http://fedoraproject.org/wiki/PackageMaintainers/
+TrackingDownstream +
+https://www.redhat.com/archives/fedora-devel-announce/2007-
+September/msg00019.html
+- No more separate kernel module packages. +
+http://kernelslacker.livejournal.com/85039.html Dave Jones, Fedora
+kernel co-maintainer on Fedora kernel patches +
+http://fedoraproject.org/wiki/Extras/GetKernelModulesUpstream +
+http://kernelnewbies.org/UpstreamMerge +
+http://www.kroah.com/linux/talks/ols_2002_kernel_codingstyle_talk/
+html +
+http://umeet.uninet.edu/umeet2002/talk/2002-12-11/linux1.txt.html +
+http://kernelnewbies.org/New_Kernel_Hacking_HOWTO/Kernel_Programming_Sty +
+
+
+
+From:
+http://fedoraproject.org/wiki/Staying_close_to_upstream_projects
