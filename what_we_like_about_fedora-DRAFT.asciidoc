@@ -1,0 +1,22 @@
+Why *we* like Fedora
+====================
+:author: $placeholder Team at $placeholder
+
+Introduction
+------------
+[id="introduction"]
+TBD
+
+Rapid Development Cycle
+-----------------------
+[id="develcycle"]
+
+// Comments about rapid development Cycle
+
+Clear Policies and Procedures
+-----------------------------
+[id="policies"]
+
+// Comments about policies
+
+
