@@ -11,33 +11,33 @@ Multiple versions, for multiple uses
 ------------------------------------
 [id="versions"]
 
-Regular Stable Point Releases (12.3, 13.1, 13.2, etc)
+Regular Stable Point Releases (12.3, 13.1, 13.2, etc) +
 // Reasons why the Stable Point Releases are good
-Availability of a Long Term Stable LTS Release (Evergreen)
+Availability of a Long Term Stable LTS Release (Evergreen) +
 // Reasons why LTS is good
-Tested Rolling Release (Tumbleweed)
+Tested Rolling Release (Tumbleweed) +
 // Why having a tested rolling release is good
 
 Build Tools
 -----------
 [id="buildtools"]
 
-Open Build Service
+Open Build Service +
 // Things we like about OBS
-Machinery
+Machinery +
 // Things we like about Machinery
-Kiwi
+Kiwi +
 // Things we like about Kiwi
-osc
+osc +
 // Things we like about osc
 
 System Management Tools
 -----------------------
 [id="systemmanagement"]
 
-YaST
+YaST +
 // What we like about YaST
-Snapper
+Snapper +
 // What we like about Snapper
-Zypper and libsolv
+Zypper and libsolv +
 // What we like about Zypper and libsolv
